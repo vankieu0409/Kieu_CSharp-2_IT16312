@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 
@@ -242,14 +243,80 @@ namespace BAI_3._1_LINQ_CacCauLenh
             {
                 Console.WriteLine($"{x.MaSP} + {x.TenSP} + {x.TenNVTao} + {x.TenTheLoai}");
             }
+
+            //có thể kết hợp với Group by
         }
+        #endregion
+
+        #region  Câu lệnh Select trả về tập hợp chứa các phần tử
+
+        public static void ViduSelect()
+        {
+            var temp = from a in _lstNhanViens
+                select a; // trả về đối tượng nhân viên
+            var temp2 = from a in _lstNhanViens
+                select a.TenNV; //trả về 1 tập giá trị có kiểu String
+
+            foreach (var VARIABLE in temp)
+            {
+                VARIABLE.InRaManHinh();
+            }
+
+            Console.WriteLine(" ");
+            foreach (var VARIABLE in temp2)
+            {
+                Console.WriteLine(VARIABLE+" ");
+            }
+
+            foreach (var VARIABLE in _lstSanPhams.GroupBy(a=>a.MauSac))
+            {
+                Console.Write(VARIABLE.Key+" * ");
+            }
+
+            Console.WriteLine("\n");
+            foreach (var VARIABLE in _lstSanPhams.SelectMany(a => a.MauSac))
+            {
+                Console.Write(VARIABLE+ " *" );
+            }
+
+            var temp4 = from a in _lstNhanViens
+                select new
+                {
+                    name = a.TenNV,
+                    addr = a.DiaChi
+
+                };
+            foreach (var VARIABLE in temp4.SelectMany(a => a.addr))
+            {
+                Console.Write(VARIABLE +" "/*+VARIABLE.addr*/);
+            }
+        }
+
+        #endregion
+
+        #region All && Any
+
+        public static void viDuANY()
+        {
+            //All: Kiểm tra xem tất cả các phần tử trong dãy thỏa mán thì trả ra true
+            //Any: Kiểm tra xem tất cả các phần tử trong dãy chỉ cần có thỏa mán thì trả ra true
+            var temp = _lsttTheLoais.All(c => c.TrangThai == true);
+            var temp2 = _lsttTheLoais.Any(c => c.TrangThai == true);
+            Console.WriteLine(temp);
+            Console.WriteLine(temp2);
+            TheLoai theLoainew = new TheLoai {Id = -1, MaTheLoai = "TL1", TenTheLoai = "Small", TrangThai = true};
+            var temp3 = _lsttTheLoais.Contains(theLoainew,new TheLoai());
+            Console.WriteLine("contains : "+temp3);
+        }
+        
+
         #endregion
         static void Main(string[] args)
         {
             //Gọi các ví dụ về lý thuyết lên để chạy
             Console.OutputEncoding = Encoding.GetEncoding("UTF-8");
             Program program = new Program();
-            ViDU_Groupby();
+            viDuANY();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace BAI_3._1_LINQ_CacCauLenh
             {
                 new TheLoai{Id = 1,MaTheLoai = "TL1",TenTheLoai = "Small",TrangThai = true},
                 new TheLoai{Id = 2,MaTheLoai = "TL2",TenTheLoai = "Large",TrangThai = true},
-                new TheLoai{Id = 3,MaTheLoai = "TL3",TenTheLoai = "Full Size",TrangThai = true},
+                new TheLoai{Id = 3,MaTheLoai = "TL3",TenTheLoai = "Full Size",TrangThai = false},
             };
         }
     }
