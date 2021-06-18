@@ -317,9 +317,9 @@ namespace BAI_3._1_LINQ_CacCauLenh
         public static void ARRGREATION()
         {
             // tính tổng số lượng máy màu đen mà cửa hàng đang có
-            var temp_mayden= from a in _lstSanPhams
-                      where a.MauSac=="Đen"
-                      select 
+            // var temp_mayden= from a in _lstSanPhams
+            //           where a.MauSac=="Đen"
+            //           select 
 
         }
 
