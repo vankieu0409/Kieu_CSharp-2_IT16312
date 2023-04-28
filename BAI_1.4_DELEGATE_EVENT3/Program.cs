@@ -23,18 +23,18 @@ namespace BAI_1._4_DELEGATE_EVENT3
                     Console.WriteLine("Mời bạn nhập số nguyên 2");
                     int b = Convert.ToInt32(Console.ReadLine());
                     //Hành động phát đi sự kiện
-                    suKienNhapSo?.Invoke(this,new UserInput1(a,b));//Nếu sự kiện nhập số != null
+                    suKienNhapSo?.Invoke(this, new UserInput1(a, b));//Nếu sự kiện nhập số != null
                 } while (true);
             }
         }
 
-        class UserInput1: EventArgs
+        class UserInput1 : EventArgs
         {
             //prop + tab
             public int a { get; set; }
             public int b { get; set; }
 
-            public UserInput1(int a,int b)
+            public UserInput1(int a, int b)
             {
                 this.a = a;
                 this.b = b;
